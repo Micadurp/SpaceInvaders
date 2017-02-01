@@ -1,5 +1,5 @@
 # CMake settings
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.6)
 
 set(SOLUTION_NAME SpaceInvaders)
 project(${SOLUTION_NAME})
@@ -41,6 +41,7 @@ add_definitions(-DUNICODE -D_UNICODE)
 
 # Add subdirectories
 add_subdirectory(Game)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Game)
 
 # Copy game resources
 add_custom_target(_resourceCopy ALL 
