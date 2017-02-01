@@ -1,7 +1,7 @@
 # CMake settings
 cmake_minimum_required(VERSION 3.0.2)
 
-set(SOLUTION_NAME litet-spel)
+set(SOLUTION_NAME SpaceInvaders)
 project(${SOLUTION_NAME})
 
 option(COMPILE_RELEASE_BUILD "Unchecked is debug" OFF)
@@ -25,14 +25,16 @@ include(create_source_group)
 
 # SFML paths and libs
 
-set(EXTERNAL_INCLUDE_DIR ${CMAKE_SOURCE_DIR})
+set(SFML_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/SFML/include)
 if(COMPILE_RELEASE_BUILD)
-	set(EXTERNAL_LIBRARIES )	
+	set(SFML_LIBRARIES sfml-audio.lib sfml-graphics.lib sfml-main.lib sfml-network.lib sfml-system.lib sfml-window.lib)	
 else()
-	set(EXTERNAL_LIBRARIES )	
+	set(SFML_LIBRARIES sfml-audio-d.lib sfml-graphics-d.lib sfml-main-d.lib sfml-network-d.lib sfml-system-d.lib sfml-window-d.lib)	
 endif()
 
-include_directories(${EXTERNAL_INCLUDE_DIRS})
+# Add SFML
+add_subdirectory(SFML)
+include_directories(${SFML_INCLUDE_DIR})
 
 # Set global compiler options
 add_definitions(-DUNICODE -D_UNICODE)
@@ -44,8 +46,6 @@ add_subdirectory(Game)
 add_custom_target(_resourceCopy ALL 
 	COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Assets ${OUTPUT_FOLDER}
 	COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Assets ${CMAKE_BINARY_DIR}/Game
-	COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Game/Include/Shaders ${OUTPUT_FOLDER}
-	COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Game/Include/Shaders ${CMAKE_BINARY_DIR}/Game
 )
 
 
