@@ -8,7 +8,7 @@ Player::Player() : Object()
 
 Player::~Player()
 {
-
+	Shutdown();
 }
 
 bool Player::Initialize(float pPositionX, float pPositionY, int team)

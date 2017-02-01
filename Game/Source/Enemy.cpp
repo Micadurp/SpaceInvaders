@@ -8,7 +8,7 @@ Enemy::Enemy() : Object()
 
 Enemy::~Enemy()
 {
-
+	Shutdown();
 }
 
 bool Enemy::Initialize(float pPositionX, float pPositionY, int team)

@@ -7,7 +7,7 @@ Bullet::Bullet() : Object()
 
 Bullet::~Bullet()
 {
-
+	Shutdown();
 }
 
 bool Bullet::Initialize(float pPositionX, float pPositionY, int team)

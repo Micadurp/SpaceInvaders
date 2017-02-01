@@ -7,8 +7,17 @@ Object::Object()
 
 Object::~Object()
 {
-	delete model;
-	model = NULL;
+	Shutdown();
+}
+
+bool Object::Shutdown()
+{
+	if (model)
+	{
+		delete model;
+		model = 0;
+	}
+	return true;
 }
 
 bool Object::Initialize(float pPositionX, float pPositionY, int pTeam)

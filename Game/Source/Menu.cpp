@@ -3,16 +3,23 @@
 
 Menu::Menu()
 {
-
+	font = nullptr;
 }
 
 Menu::~Menu()
+{
+	Shutdown();
+}
+
+bool Menu::Shutdown()
 {
 	while (texts.size()>0)
 	{
 		delete texts.back();
 		texts.pop_back();
 	}
+
+	return true;
 }
 
 bool Menu::Initialize(sf::Font * gameFont)

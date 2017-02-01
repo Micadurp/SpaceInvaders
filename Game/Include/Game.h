@@ -25,7 +25,7 @@ private:
 
 public:
 	Game();
-	~Game();
+	virtual ~Game();
 
 	bool Initialize(Score * score);
 	bool Destroy();

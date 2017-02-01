@@ -17,9 +17,10 @@ private:
 
 public:
 	Menu();
-	~Menu();
+	virtual ~Menu();
 
 	bool Initialize(sf::Font * gameFont);
+	bool Shutdown();
 	int Run(sf::RenderWindow * window);
 
 	bool Menu::inputHandler();

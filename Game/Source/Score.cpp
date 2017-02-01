@@ -6,11 +6,17 @@ Score::Score()
 
 Score::~Score()
 {
+	Shutdown();
+}
+
+bool Score::Shutdown()
+{
 	while (topScoresText.size()>0)
 	{
 		delete topScoresText.back();
 		topScoresText.pop_back();
 	}
+	return true;
 }
 
 bool Score::Initialize(sf::Font * gameFont)

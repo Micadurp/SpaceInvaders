@@ -7,7 +7,7 @@ Wall::Wall() : Object()
 
 Wall::~Wall()
 {
-
+	Shutdown();
 }
 
 bool Wall::Initialize(float pPositionX, float pPositionY, int team)

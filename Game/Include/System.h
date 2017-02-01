@@ -23,9 +23,10 @@ private:
 
 public:
 	System();
-	~System();
+	virtual ~System();
 
 	bool Initialize();
+	bool Shutdown();
 	bool Run();
 
 

@@ -34,6 +34,7 @@ public:
 	virtual ~Score();
 
 	bool Initialize(sf::Font * gameFont);
+	bool Shutdown();
 	bool Run(sf::RenderWindow * window);
 
 	void ChangeScore(long points);

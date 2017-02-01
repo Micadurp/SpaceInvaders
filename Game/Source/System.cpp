@@ -9,23 +9,7 @@ System::System()
 
 System::~System()
 {
-	if (window)
-	{
-		delete window;
-		window = 0;
-	}
-
-	if (score)
-	{
-		delete score;
-		score = 0;
-	}
-
-	if (font)
-	{
-		delete font;
-		font = 0;
-	}
+	Shutdown();
 }
 
 bool System::Initialize()
@@ -58,6 +42,31 @@ bool System::Initialize()
 		return false;
 	}
 
+	return true;
+}
+
+bool System::Shutdown()
+{
+	menu.Shutdown();
+	game.Destroy();
+
+	if (window)
+	{
+		delete window;
+		window = 0;
+	}
+
+	if (score)
+	{
+		delete score;
+		score = 0;
+	}
+
+	if (font)
+	{
+		delete font;
+		font = 0;
+	}
 
 	return true;
 }

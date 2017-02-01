@@ -21,30 +21,31 @@ bool Game::Destroy()
 {
 	if (player)
 	{
+		player->Shutdown();
 		delete player;
 		player = 0;
 	}
 
 	while (enemies.size()>0)
 	{
+		enemies.back()->Shutdown();
 		delete enemies.back();
 		enemies.pop_back();
 	}
 
 	while (walls.size()>0)
 	{
+		walls.back()->Shutdown();
 		delete walls.back();
 		walls.pop_back();
 	}
 
 	while (bullets.size()>0)
 	{
+		bullets.back()->Shutdown();
 		delete bullets.back();
 		bullets.pop_back();
 	}
-	
-	//delete scoreHandler;
-	//scoreHandler = NULL;
 
 	return true;
 }
@@ -97,6 +98,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 				if (BulletCollision(bullets.at(i), enemies.at(j)))
 				{
 					scoreHandler->ChangeScore(enemies.at(j)->GetPoints());
+					enemies.at(j)->Shutdown();
 					delete enemies.at(j);
 					enemies.erase(enemies.begin() + j);
 					bullets.at(i)->SetAlive(false);
@@ -108,6 +110,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 			{
 				if (BulletCollision(bullets.at(i), walls.at(j)))
 				{
+					walls.at(j)->Shutdown();
 					delete walls.at(j);
 					walls.erase(walls.begin() + j);
 					bullets.at(i)->SetAlive(false);
@@ -117,6 +120,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 
 			if (bullets.at(i)->GetPosY() < -1 || !bullets.at(i)->IsAlive())
 			{
+				bullets.at(i)->Shutdown();
 				delete bullets.at(i);
 				bullets.erase(bullets.begin() + i);
 			}
