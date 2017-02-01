@@ -2,7 +2,7 @@
 
 Game::Game()
 {
-
+	player = nullptr;
 }
 
 Game::~Game()
@@ -19,8 +19,11 @@ bool Game::Initialize(Score * score)
 
 bool Game::Destroy()
 {
-	delete player;
-	player = NULL;
+	if (player)
+	{
+		delete player;
+		player = 0;
+	}
 
 	while (enemies.size()>0)
 	{

@@ -2,18 +2,30 @@
 
 System::System()
 {
+	window = nullptr;
+	score = nullptr;
+	font = nullptr;
 }
 
 System::~System()
 {
-	delete window;
-	window = NULL;
+	if (window)
+	{
+		delete window;
+		window = 0;
+	}
 
-	delete score;
-	score = NULL;
+	if (score)
+	{
+		delete score;
+		score = 0;
+	}
 
-	delete font;
-	font = NULL;
+	if (font)
+	{
+		delete font;
+		font = 0;
+	}
 }
 
 bool System::Initialize()
