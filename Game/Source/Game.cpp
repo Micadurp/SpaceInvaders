@@ -191,22 +191,22 @@ void Game::InputCheck(const sf::Time &frameTime)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		player->Move(200.0f * frameTime.asSeconds());
+		player->Move(frameTime.asSeconds(), true);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		player->Move(-200.0f * frameTime.asSeconds());
+		player->Move(frameTime.asSeconds(), false);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->IsShooting())
 	{
 		bullets.push_back(new Bullet());
 		bullets.back()->Initialize(player->GetPosX() + 9, player->GetPosY(), 1);
-		player->setShooting(true);
+		player->SetShooting(true);
 	}
 	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		player->setShooting(false);
+		player->SetShooting(false);
 	}
 }
 

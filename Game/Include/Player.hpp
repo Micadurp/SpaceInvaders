@@ -1,21 +1,24 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include"Object.hpp"
+#include "Object.hpp"
+#include "LuaScript.hpp"
 
 class Player : public Object
 {
 private:
 	bool shooting;
+	float movespeed;
 
 public:
 	Player();
 	virtual ~Player();
 
 	bool Initialize(float positionX, float positionY, int team) override;
-	float Move(float move);
+	// Move player in a direction at movementspeed. Deltatime should be in seconds. false = left , true = right
+	float Move(const float &pDT, const bool &direction);
 	bool IsShooting();
-	void setShooting(bool shooting);
+	void SetShooting(bool shooting);
 
 	sf::CircleShape * GetModel() override;
 };
