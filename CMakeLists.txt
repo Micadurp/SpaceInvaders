@@ -36,10 +36,16 @@ endif()
 add_subdirectory(SFML)
 include_directories(${SFML_INCLUDE_DIR})
 
+
+set(EXTERNAL_INCLUDE_DIRS)
+set(EXTERNAL_LIBRARIES_ALL)
+include_directories(${EXTERNAL_INCLUDE_DIRS})
+
 # Set global compiler options
 add_definitions(-DUNICODE -D_UNICODE)
 
 # Add subdirectories
+add_subdirectory(Dependencies)
 add_subdirectory(Game)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Game)
 
