@@ -2,9 +2,9 @@
 #define SYSTEM_H
 
 #include <SFML/Graphics.hpp>
-#include"Game.h"
-#include"Menu.h"
-#include"Score.h"
+#include"Game.hpp"
+#include"Menu.hpp"
+#include"Score.hpp"
 
 class System
 {

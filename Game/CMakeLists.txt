@@ -7,7 +7,7 @@ project(${PROJECT_NAME})
 
 
 # Set the files used in the target
-file(GLOB_RECURSE HEADERS Headers/ *.h)
+file(GLOB_RECURSE HEADERS Headers/ *.hpp)
 file(GLOB_RECURSE SOURCES Source/ *.cpp)
 include_directories(Include)
 include_directories(${CMAKE_SOURCE_DIR}/Dependencies/include/lua)

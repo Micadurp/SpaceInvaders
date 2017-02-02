@@ -1,7 +1,7 @@
 #ifndef WALL_H
 #define WALL_H
 
-#include"Object.h"
+#include"Object.hpp"
 
 class Wall : public Object
 {

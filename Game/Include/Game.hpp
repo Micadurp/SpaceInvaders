@@ -2,11 +2,11 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
-#include"Player.h"
-#include"Enemy.h"
-#include"Bullet.h"
-#include"Wall.h"
-#include"Score.h"
+#include"Player.hpp"
+#include"Enemy.hpp"
+#include"Bullet.hpp"
+#include"Wall.hpp"
+#include"Score.hpp"
 #include<vector>
 
 class Game

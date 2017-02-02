@@ -1,4 +1,4 @@
-#include <LuaScript.h>
+#include <LuaScript.hpp>
 
 LuaScript::LuaScript(const std::string& filename) 
 {
