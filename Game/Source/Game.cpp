@@ -261,7 +261,7 @@ bool Game::PlaceWall(int startPosX, int startPosY)
 		for (int j = 0; j < 3; ++j)
 		{
 			walls.push_back(new Wall());
-			walls.back()->Initialize(startPosX + i * 20, startPosY + j * 20, 0);
+			walls.back()->Initialize(startPosX + i * 15, startPosY + j * 15, 0);
 		}
 	}
 
