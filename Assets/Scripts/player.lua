@@ -1,1 +1,1 @@
-m_moveSpeed = 400.0
+m_moveSpeed = 200.0
