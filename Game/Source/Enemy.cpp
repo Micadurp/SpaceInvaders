@@ -17,15 +17,26 @@ bool Enemy::Initialize(float pPositionX, float pPositionY, int team)
 	model = new sf::CircleShape(10.f);
 	model->setFillColor(sf::Color::White);
 	model->setPosition(pPositionX, pPositionY);
-	pointWorth = 100;
+
+	LuaScript* enemyScript = new LuaScript("Scripts/enemyStats.lua");
+	pointWorth = enemyScript->GetVariable<float>("m_pointWorth");
+	movespeed = enemyScript->GetVariable<float>("m_moveSpeed");
 
 	return true;
 }
 
-float Enemy::Move(float move)
+float Enemy::Move(const float &pDT, const bool &pDirection)
 {
-	positionX += move;
-	model->move(move, 0);
+	if (pDirection)
+	{
+		positionX += movespeed * pDT;
+		model->move(movespeed * pDT, 0);
+	}
+	else
+	{
+		positionX -= movespeed * pDT;
+		model->move(-movespeed * pDT, 0);
+	}
 	return positionX;
 }
 

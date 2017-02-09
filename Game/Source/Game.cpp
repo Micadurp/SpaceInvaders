@@ -228,20 +228,12 @@ void Game::aiMove(const sf::Time &frameTime)
 	{
 		if (!enemyDescent)
 		{
-			if (enemyDirection)
-			{
-				enemies.at(i)->Move(100 * frameTime.asSeconds());
-			}
-			else
-			{
-				enemies.at(i)->Move(-100 * frameTime.asSeconds());
-			}
-
+			enemies.at(i)->Move(frameTime.asSeconds(), enemyDirection);
 		}
 		else 
 		{
-			enemies.at(i)->Move(boundaryCompensation);
 			enemies.at(i)->Descend();
+			enemies.at(i)->Move(frameTime.asSeconds(), enemyDirection);
 		}
 	}
 	enemyDescent = false;
