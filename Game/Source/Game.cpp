@@ -78,10 +78,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 
 	if (!finished)
 	{
-		if (sf::Event::KeyPressed)
-		{
-			InputCheck(frameTime);
-		}
+		//InputCheck(frameTime.asSeconds());
 
 		for (int i = 0; i < bullets.size(); ++i)
 		{
@@ -185,26 +182,29 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 	return 0;
 }
 
-void Game::InputCheck(const sf::Time &frameTime)
+void Game::InputCheck(const float &frameTime)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (sf::Event::KeyPressed)
 	{
-		player->Move(frameTime.asSeconds(), true);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		player->Move(frameTime.asSeconds(), false);
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			player->Move(frameTime, true);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			player->Move(frameTime, false);
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->IsShooting())
-	{
-		bullets.push_back(new Bullet());
-		bullets.back()->Initialize(player->GetPosX() + 9, player->GetPosY(), 1);
-		player->SetShooting(true);
-	}
-	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		player->SetShooting(false);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->IsShooting())
+		{
+			bullets.push_back(new Bullet());
+			bullets.back()->Initialize(player->GetPosX() + 9, player->GetPosY(), 1);
+			player->SetShooting(true);
+		}
+		else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			player->SetShooting(false);
+		}
 	}
 }
 

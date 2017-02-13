@@ -9,4 +9,5 @@ end
 
 function Update(dt)
 	level_default.Update(dt)
+	Game.InputCheck(dt)
 end

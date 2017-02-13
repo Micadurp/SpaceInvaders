@@ -33,10 +33,10 @@ public:
 	bool PlaceWall(int startPosX, int startPosY);
 	bool CreatePlayer(int startPosX, int startPosY);
 	bool CreateEnemy(int startPosX, int startPosY);
+	void InputCheck(const float &frameTime);
 
 private:
 	bool defaultSetup();
-	void InputCheck(const sf::Time &frameTime);
 	bool BulletCollision(Bullet * bullet, Object * object);
 	void aiMove(const sf::Time &frameTime);
 	void enemyFire();

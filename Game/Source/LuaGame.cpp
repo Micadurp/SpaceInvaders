@@ -13,6 +13,7 @@ namespace LuaGame
 			{ "PlaceWall", PlaceWall },
 			{ "CreatePlayer", CreatePlayer },
 			{ "CreateEnemy", CreateEnemy },
+			{ "InputCheck", InputCheck },
 			{ NULL, NULL }
 		};
 
@@ -44,6 +45,13 @@ namespace LuaGame
 		int posX = lua_tointeger(lua, -2);
 		int posY = lua_tointeger(lua, -1);
 		g_game->CreateEnemy(posX, posY);
+		return 0;
+	}
+
+	int InputCheck(lua_State* lua)
+	{
+		float dt = lua_tonumber(lua, -1);
+		g_game->InputCheck(dt);
 		return 0;
 	}
 }

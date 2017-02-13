@@ -10,6 +10,7 @@ namespace LuaGame
 	int PlaceWall(lua_State* lua);
 	int CreatePlayer(lua_State* lua);
 	int CreateEnemy(lua_State* lua);
+	int InputCheck(lua_State* lua);
 }
 
 #endif

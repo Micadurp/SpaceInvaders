@@ -3,7 +3,7 @@ level_default = {}
 function level_default.LoadLevel()
 	Game.CreatePlayer(400, 570)
 	for i=1,10 do 
-		for j=1,10 do 
+		for j=1,9 do 
 			Game.CreateEnemy(225 + i * 40, j * 40)
 		end
 	end

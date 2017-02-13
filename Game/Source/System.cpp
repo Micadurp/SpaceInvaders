@@ -47,9 +47,9 @@ bool System::Initialize()
 
 bool System::Shutdown()
 {
+	lua.Unload();
 	menu.Shutdown();
 	game.Destroy();
-	lua.Unload();
 
 	if (window)
 	{
@@ -104,11 +104,10 @@ bool System::Run()
 		else if (state == 1)
 		{
 			lua.Update(frameTime.asSeconds());
-			game.RenderGame(window, frameTime);
-			/*if (game.RenderGame(window, frameTime) == 1)
+			if (game.RenderGame(window, frameTime) == 1)
 			{
 				state = 2;
-			}*/
+			}
 		}
 		else if (state == 2)
 		{
