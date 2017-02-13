@@ -39,6 +39,7 @@ private:
 	bool defaultSetup();
 	bool BulletCollision(Bullet * bullet, Object * object);
 	void aiMove(const sf::Time &frameTime);
+	void playerFire();
 	void enemyFire();
 	void FinishGameCheck(sf::RenderWindow * window, const sf::Time &frameTime);
 };

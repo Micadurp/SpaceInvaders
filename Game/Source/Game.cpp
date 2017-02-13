@@ -197,9 +197,7 @@ void Game::InputCheck(const float &frameTime)
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->IsShooting())
 		{
-			bullets.push_back(new Bullet());
-			bullets.back()->Initialize(player->GetPosX() + 9, player->GetPosY(), 1);
-			player->SetShooting(true);
+			playerFire();
 		}
 		else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
@@ -237,6 +235,13 @@ void Game::aiMove(const sf::Time &frameTime)
 	enemyDescent = false;
 }
 
+void Game::playerFire()
+{
+	bullets.push_back(new Bullet());
+	bullets.back()->Initialize(player->GetPosX() + 9, player->GetPosY(), 1);
+	player->SetShooting(true);
+}
+
 void Game::enemyFire()
 {
 	int enemyShoot;
@@ -250,7 +255,7 @@ void Game::enemyFire()
 			bullets.back()->Initialize(enemies.at(i)->GetPosX(), enemies.at(i)->GetPosY(), 2);
 		}
 	}
-}	
+}
 
 bool Game::PlaceWall(int startPosX, int startPosY)
 {
