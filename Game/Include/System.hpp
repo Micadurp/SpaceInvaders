@@ -5,6 +5,7 @@
 #include"Game.hpp"
 #include"Menu.hpp"
 #include"Score.hpp"
+#include "LuaScript.hpp"
 
 class System
 {
@@ -20,6 +21,8 @@ private:
 	sf::Font * font;
 
 	int state;
+
+	LuaScript lua;
 
 public:
 	System();

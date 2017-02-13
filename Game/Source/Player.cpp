@@ -16,9 +16,9 @@ bool Player::Initialize(float pPositionX, float pPositionY, int team)
 	model->setFillColor(sf::Color::Green);
 	model->setPosition(pPositionX, pPositionY);
 
-	LuaScript* playerScript = new LuaScript("Scripts/player.lua");
-	movespeed = playerScript->GetVariable<float>("m_moveSpeed");
-	delete playerScript;
+	/*LuaScript playerScript = LuaScript();
+	playerScript.LoadData("Scripts/player.lua");
+	movespeed = playerScript.GetVariable<float>("m_moveSpeed");*/
 
 	return true;
 }

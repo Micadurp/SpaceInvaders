@@ -49,6 +49,7 @@ bool System::Shutdown()
 {
 	menu.Shutdown();
 	game.Destroy();
+	lua.Unload();
 
 	if (window)
 	{
@@ -96,14 +97,18 @@ bool System::Run()
 			{
 				game.Destroy();
 				game.Initialize(score);
+
+				lua.Load(&game);
 			}
 		}
 		else if (state == 1)
 		{
-			if (game.RenderGame(window, frameTime) == 1)
+			lua.Update(frameTime.asSeconds());
+			game.RenderGame(window, frameTime);
+			/*if (game.RenderGame(window, frameTime) == 1)
 			{
 				state = 2;
-			}
+			}*/
 		}
 		else if (state == 2)
 		{

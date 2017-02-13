@@ -2,7 +2,6 @@
 #define ENEMY_H
 
 #include"Object.hpp"
-#include "LuaScript.hpp"
 
 class Enemy : public Object
 {

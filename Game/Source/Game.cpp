@@ -13,8 +13,10 @@ Game::~Game()
 bool Game::Initialize(Score * score)
 {
 	scoreHandler = score;
-	// TODO Give ability to choose different setups
-	return defaultSetup();
+	enemyDirection = true;
+	finished = false;
+	victory = false;
+	return true;
 }
 
 bool Game::Destroy()
@@ -52,8 +54,7 @@ bool Game::Destroy()
 
 bool Game::defaultSetup()
 {
-	player = new Player();
-	player->Initialize(400, 570, 1);
+	
 	for (int i = 0; i < 9; ++i)
 	{
 		for (int j = 0; j < 8; ++j)
@@ -62,14 +63,11 @@ bool Game::defaultSetup()
 			enemies.back()->Initialize(225 + i * 40, j * 40, 2);
 		}
 	}
-	enemyDirection = true;
 
 	PlaceWall(150, 500);
 	PlaceWall(350, 500);
 	PlaceWall(550, 500);
 
-	finished = false;
-	victory = false;
 
 	return true;
 }
@@ -265,6 +263,27 @@ bool Game::PlaceWall(int startPosX, int startPosY)
 		}
 	}
 
+	return true;
+}
+
+bool Game::CreatePlayer(int startPosX, int startPosY)
+{
+	if (!player)
+	{
+		player = new Player();
+		player->Initialize(startPosX, startPosY, 1);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Game::CreateEnemy(int startPosX, int startPosY)
+{
+	enemies.push_back(new Enemy());
+	enemies.back()->Initialize(startPosX, startPosY, 2);
 	return true;
 }
 

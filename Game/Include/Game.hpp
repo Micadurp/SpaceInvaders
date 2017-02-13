@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAME_HPP
+#define GAME_HPP
 
 #include <SFML/Graphics.hpp>
 #include"Player.hpp"
@@ -30,13 +30,15 @@ public:
 	bool Initialize(Score * score);
 	bool Destroy();
 	int RenderGame(sf::RenderWindow * window, const sf::Time &frameTime);
+	bool PlaceWall(int startPosX, int startPosY);
+	bool CreatePlayer(int startPosX, int startPosY);
+	bool CreateEnemy(int startPosX, int startPosY);
 
 private:
 	bool defaultSetup();
 	void InputCheck(const sf::Time &frameTime);
 	bool BulletCollision(Bullet * bullet, Object * object);
 	void aiMove(const sf::Time &frameTime);
-	bool PlaceWall(int startPosX, int startPosY);
 	void enemyFire();
 	void FinishGameCheck(sf::RenderWindow * window, const sf::Time &frameTime);
 };

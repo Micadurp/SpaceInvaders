@@ -18,9 +18,10 @@ bool Enemy::Initialize(float pPositionX, float pPositionY, int team)
 	model->setFillColor(sf::Color::White);
 	model->setPosition(pPositionX, pPositionY);
 
-	LuaScript* enemyScript = new LuaScript("Scripts/enemyStats.lua");
-	pointWorth = enemyScript->GetVariable<float>("m_pointWorth");
-	movespeed = enemyScript->GetVariable<float>("m_moveSpeed");
+	/*LuaScript enemyScript = LuaScript();
+	enemyScript.LoadData("Scripts/enemyStats.lua");
+	pointWorth = enemyScript.GetVariable<float>("m_pointWorth");
+	movespeed = enemyScript.GetVariable<float>("m_moveSpeed");*/
 
 	return true;
 }

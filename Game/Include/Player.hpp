@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include "Object.hpp"
-#include "LuaScript.hpp"
 
 class Player : public Object
 {

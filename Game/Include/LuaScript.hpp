@@ -1,20 +1,26 @@
-#pragma once	
+#ifndef LUASCRIPT_HPP
+#define LUASCRIPT_HPP
+
+#include "lua.hpp"
 
 #include <string>
 #include <vector>
 #include <iostream>
+#include "LuaGame.hpp"
+#include "Game.hpp"
 
-// Lua is written in C, so compiler needs to know how to link its libraries
-extern "C" {
-# include "lua.h"
-# include "lauxlib.h"
-# include "lualib.h"
-}
 
-class LuaScript {
+class LuaScript 
+{
 public:
-	LuaScript(const std::string& filename);
+	LuaScript();
 	virtual ~LuaScript();
+
+	void Load(Game * game);
+	void Unload();
+	void Update(float deltaTime);
+
+	void LoadData(const std::string& filename);
 
 	template<typename T>
 	T GetVariable(const std::string& variableName) 
@@ -99,6 +105,8 @@ private:
 
 	lua_State* L;
 	int level;
+	bool validState;
+	int updateReference;
 };
 
 template <>
@@ -147,3 +155,5 @@ inline std::string LuaScript::lua_getdefault()
 {
 	return "null";
 }
+
+#endif
