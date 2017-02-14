@@ -1,7 +1,9 @@
 #include "Player.hpp"
 
 
-Player::Player() : shooting(false) , movespeed(200) , Object() {}
+Player::Player() : shooting(false) , movespeed(200) , Object() 
+{
+}
 
 Player::~Player()
 {
@@ -12,14 +14,16 @@ bool Player::Initialize(float pPositionX, float pPositionY, int team)
 {
 	Object::Initialize(pPositionX, pPositionY, team);
 	shooting = false;
-	model = new sf::CircleShape(10.f);
-	model->setFillColor(sf::Color::Green);
-	model->setPosition(pPositionX, pPositionY);
+	model = sf::CircleShape(10.f);
+	model.setFillColor(sf::Color::Green);
+	model.setPosition(pPositionX, pPositionY);
+	
+	return true;
+}
 
-	/*LuaScript playerScript = LuaScript();
-	playerScript.LoadData("Scripts/player.lua");
-	movespeed = playerScript.GetVariable<float>("m_moveSpeed");*/
-
+bool Player::Kill()
+{
+	Object::Kill();
 	return true;
 }
 
@@ -28,12 +32,12 @@ float Player::Move(const float &pDT, const bool &pDirection)
 	if (pDirection)
 	{
 		positionX += movespeed * pDT;
-		model->move(movespeed * pDT, 0);
+		model.move(movespeed * pDT, 0);
 	}
 	else
 	{
 		positionX -= movespeed * pDT;
-		model->move(-movespeed * pDT, 0);
+		model.move(-movespeed * pDT, 0);
 	}
 	return positionX;
 }
@@ -50,5 +54,5 @@ void Player::SetShooting(bool pShooting)
 
 sf::CircleShape * Player::GetModel()
 {
-	return (sf::CircleShape*) model;
+	return &model;
 }

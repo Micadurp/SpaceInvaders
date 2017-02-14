@@ -2,6 +2,7 @@
 #define GAME_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Object.hpp"
 #include"Player.hpp"
 #include"Enemy.hpp"
 #include"Bullet.hpp"
@@ -12,10 +13,10 @@
 class Game
 {
 private:
-	Player * player;
-	std::vector<Enemy*> enemies;
-	std::vector<Bullet*> bullets;
-	std::vector<Wall*> walls;
+	Player player;
+	std::vector<Enemy> enemies;
+	std::vector<Bullet> bullets;
+	std::vector<Wall> walls;
 	bool enemyDirection;
 	bool enemyDescent;
 	float boundaryCompensation;
@@ -36,8 +37,7 @@ public:
 	void InputCheck(const float &frameTime);
 
 private:
-	bool defaultSetup();
-	bool BulletCollision(Bullet * bullet, Object * object);
+	bool BulletCollision(Bullet& bullet, Object& object);
 	void aiMove(const sf::Time &frameTime);
 	void playerFire();
 	void enemyFire();

@@ -2,21 +2,18 @@
 
 Object::Object()
 {
-
+	positionX = 0;
+	positionY = 0;
+	team = 0;
+	alive = false;
 }
 
 Object::~Object()
 {
-	Shutdown();
 }
 
 bool Object::Shutdown()
 {
-	if (model)
-	{
-		delete model;
-		model = 0;
-	}
 	return true;
 }
 
@@ -27,6 +24,12 @@ bool Object::Initialize(float pPositionX, float pPositionY, int pTeam)
 	team = pTeam;
 	alive = true;
 	
+	return true;
+}
+
+bool Object::Kill()
+{
+	alive = false;
 	return true;
 }
 
