@@ -1,7 +1,7 @@
 #include "Enemy.hpp"
 
 
-Enemy::Enemy() : Object()
+Enemy::Enemy() : pointWorth(100), movespeed(100), Object()
 {
 
 }
