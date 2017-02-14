@@ -52,26 +52,6 @@ bool Game::Destroy()
 	return true;
 }
 
-bool Game::defaultSetup()
-{
-	
-	for (int i = 0; i < 9; ++i)
-	{
-		for (int j = 0; j < 8; ++j)
-		{
-			enemies.push_back(new Enemy());
-			enemies.back()->Initialize(225 + i * 40, j * 40, 2);
-		}
-	}
-
-	PlaceWall(150, 500);
-	PlaceWall(350, 500);
-	PlaceWall(550, 500);
-
-
-	return true;
-}
-
 int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 {
 	FinishGameCheck(window, frameTime);
