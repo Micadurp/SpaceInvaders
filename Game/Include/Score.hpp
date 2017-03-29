@@ -37,7 +37,7 @@ public:
 	bool Shutdown();
 	bool Run(sf::RenderWindow * window);
 
-	void ChangeScore(long points);
+	void AddPoints(long points);
 
 	sf::Text GetTotalScore();
 	sf::Text GetHighScore();

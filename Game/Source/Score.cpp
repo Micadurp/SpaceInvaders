@@ -84,7 +84,7 @@ bool Score::Run(sf::RenderWindow * window)
 	return true;
 }
 
-void Score::ChangeScore(long points)
+void Score::AddPoints(long points)
 {
 	totalScore += points;
 	if (totalScore > highScore)

@@ -161,7 +161,7 @@ void Game::BulletCheck()
 				{
 					if (CheckCollision(bullet, enemy))
 					{
-						scoreHandler->ChangeScore(enemy.GetPoints());
+						scoreHandler->AddPoints(enemy.GetPoints());
 						enemy.Kill();
 						bullet.Kill();
 						break;
