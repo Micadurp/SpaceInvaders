@@ -155,6 +155,11 @@ void Game::InputCheck(const float &frameTime)
 {
 	if (sf::Event::KeyPressed)
 	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			finished = true;
+		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			player.Move(frameTime, true);
