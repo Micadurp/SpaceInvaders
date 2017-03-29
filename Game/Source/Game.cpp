@@ -275,7 +275,16 @@ void Game::FinishGameCheck(sf::RenderWindow * window, const sf::Time &frameTime)
 		finished = true;		
 	}
 
-	if (enemies.size() <= 0)
+	bool isAnyEnemyAlive = false;
+	for each(Enemy enemy in enemies) //Check if any enemy is alive
+	{
+		if (enemy.IsAlive())
+		{
+			isAnyEnemyAlive = true;
+		}
+	}
+
+	if (!isAnyEnemyAlive) // Victory if all enemies are dead
 	{
 		victory = true;
 		finished = true;
