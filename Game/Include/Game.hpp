@@ -37,7 +37,7 @@ public:
 	void InputCheck(const float &frameTime);
 
 private:
-	bool BulletCollision(Bullet& bullet, Object& object);
+	bool CheckCollision(Object& object1, Object& object2);
 	void aiMove(const sf::Time &frameTime);
 	void playerFire();
 	void enemyFire();

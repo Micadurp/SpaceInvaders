@@ -47,7 +47,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 					continue;
 				}
 
-				if (BulletCollision(bullets.at(i), player))
+				if (CheckCollision(bullets.at(i), player))
 				{
 					player.Kill();
 				}
@@ -56,7 +56,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 				{
 					if (enemies.at(j).IsAlive())
 					{
-						if (BulletCollision(bullets.at(i), enemies.at(j)))
+						if (CheckCollision(bullets.at(i), enemies.at(j)))
 						{
 							scoreHandler->ChangeScore(enemies.at(j).GetPoints());
 							enemies.at(j).Kill();
@@ -70,7 +70,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 				{
 					if (walls.at(j).IsAlive())
 					{
-						if (BulletCollision(bullets.at(i), walls.at(j)))
+						if (CheckCollision(bullets.at(i), walls.at(j)))
 						{
 							walls.at(j).Kill();
 							bullets.at(i).Kill();
@@ -180,11 +180,11 @@ void Game::InputCheck(const float &frameTime)
 	}
 }
 
-bool Game::BulletCollision(Bullet& bullet, Object& object)
+bool Game::CheckCollision(Object& object1, Object& object2)
 {
-	if (bullet.GetModel()->getGlobalBounds().intersects(object.GetModel()->getGlobalBounds()))
+	if (object1.GetModel()->getGlobalBounds().intersects(object2.GetModel()->getGlobalBounds()))
 	{
-		if (bullet.GetTeam() != object.GetTeam())
+		if (object1.GetTeam() != object2.GetTeam())
 		{
 			return true;
 		}
