@@ -43,41 +43,41 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 		enemyFire();
 
 		window->draw(*player.GetModel());
-		for (int i = 0; i < bullets.size(); ++i)
+		for (auto& bullet : bullets)
 		{
-			if (bullets.at(i).IsAlive())
+			if (bullet.IsAlive())
 			{
-				bullets.at(i).Move(100 * frameTime.asSeconds());
-				window->draw(*bullets.at(i).GetModel());
+				bullet.Move(100 * frameTime.asSeconds());
+				window->draw(*bullet.GetModel());
 			}
 		}
-		for (int i = 0; i < enemies.size(); ++i)
+		for (auto& enemy : enemies)
 		{
-			if (enemies.at(i).IsAlive())
+			if (enemy.IsAlive())
 			{
-				if ((enemies.at(i).GetPosX() < 0 || enemies.at(i).GetPosX() > 800) && !enemyDescent)
+				if ((enemy.GetPosX() < 0 || enemy.GetPosX() > 800) && !enemyDescent)
 				{
 					enemyDirection = !enemyDirection;
 					enemyDescent = true;
 
-					if (enemies.at(i).GetPosX() < 0)
+					if (enemy.GetPosX() < 0)
 					{
-						boundaryCompensation = -enemies.at(i).GetPosX();
+						boundaryCompensation = -enemy.GetPosX();
 					}
 					else
 					{
-						boundaryCompensation = 800 - enemies.at(i).GetPosX();
+						boundaryCompensation = 800 - enemy.GetPosX();
 					}
 				}
-				window->draw(*enemies.at(i).GetModel());
+				window->draw(*enemy.GetModel());
 			}
 		}
 
-		for (int i = 0; i < walls.size(); ++i)
+		for (auto& wall : walls)
 		{
-			if (walls.at(i).IsAlive())
+			if (wall.IsAlive())
 			{
-				window->draw(*walls.at(i).GetModel());
+				window->draw(*wall.GetModel());
 			}
 		}
 
