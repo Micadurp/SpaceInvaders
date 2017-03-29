@@ -229,11 +229,14 @@ void Game::enemyFire()
 
 	for (int i = 0; i < enemies.size(); ++i)
 	{
-		enemyShoot = rand() % 10000;
-		if (enemyShoot == 1)
+		if (enemies.at(i).IsAlive())
 		{
-			bullets.emplace_back();
-			bullets.back().Initialize(enemies.at(i).GetPosX(), enemies.at(i).GetPosY(), 2);
+			enemyShoot = rand() % 10000;
+			if (enemyShoot == 1)
+			{
+				bullets.emplace_back();
+				bullets.back().Initialize(enemies.at(i).GetPosX(), enemies.at(i).GetPosY(), 2);
+			}
 		}
 	}
 }
