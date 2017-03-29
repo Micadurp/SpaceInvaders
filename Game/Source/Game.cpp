@@ -272,7 +272,7 @@ void Game::FinishGameCheck(sf::RenderWindow * window, const sf::Time &frameTime)
 	}
 
 	bool isAnyEnemyAlive = false;
-	for each(Enemy enemy in enemies) //Check if any enemy is alive
+	for (auto& enemy : enemies) //Check if any enemy is alive
 	{
 		if (enemy.IsAlive())
 		{
