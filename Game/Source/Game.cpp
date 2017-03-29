@@ -37,49 +37,7 @@ int Game::RenderGame(sf::RenderWindow * window, const sf::Time &frameTime)
 	{
 		//InputCheck(frameTime.asSeconds());
 
-		for (int i = 0; i < bullets.size(); ++i)
-		{
-			if (bullets.at(i).IsAlive())
-			{
-				if (bullets.at(i).GetPosY() < -1)
-				{
-					bullets.at(i).Kill();
-					continue;
-				}
-
-				if (CheckCollision(bullets.at(i), player))
-				{
-					player.Kill();
-				}
-
-				for (int j = 0; j < enemies.size(); ++j)
-				{
-					if (enemies.at(j).IsAlive())
-					{
-						if (CheckCollision(bullets.at(i), enemies.at(j)))
-						{
-							scoreHandler->ChangeScore(enemies.at(j).GetPoints());
-							enemies.at(j).Kill();
-							bullets.at(i).Kill();
-							break;
-						}
-					}
-				}
-
-				for (int j = 0; j < walls.size(); ++j)
-				{
-					if (walls.at(j).IsAlive())
-					{
-						if (CheckCollision(bullets.at(i), walls.at(j)))
-						{
-							walls.at(j).Kill();
-							bullets.at(i).Kill();
-							break;
-						}
-					}
-				}
-			}
-		}
+		BulletCheck();
 
 		aiMove(frameTime);
 		enemyFire();
@@ -176,6 +134,53 @@ void Game::InputCheck(const float &frameTime)
 		else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			player.SetShooting(false);
+		}
+	}
+}
+
+void Game::BulletCheck()
+{
+	for (auto& bullet : bullets)
+	{
+		if (bullet.IsAlive())
+		{
+			if (bullet.GetPosY() < -1)
+			{
+				bullet.Kill();
+				continue;
+			}
+
+			if (CheckCollision(bullet, player))
+			{
+				player.Kill();
+			}
+
+			for (auto& enemy : enemies)
+			{
+				if (enemy.IsAlive())
+				{
+					if (CheckCollision(bullet, enemy))
+					{
+						scoreHandler->ChangeScore(enemy.GetPoints());
+						enemy.Kill();
+						bullet.Kill();
+						break;
+					}
+				}
+			}
+
+			for (auto& wall : walls)
+			{
+				if (wall.IsAlive())
+				{
+					if (CheckCollision(bullet, wall))
+					{
+						wall.Kill();
+						bullet.Kill();
+						break;
+					}
+				}
+			}
 		}
 	}
 }

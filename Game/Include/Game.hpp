@@ -35,6 +35,7 @@ public:
 	bool CreatePlayer(int startPosX, int startPosY);
 	bool CreateEnemy(int startPosX, int startPosY);
 	void InputCheck(const float &frameTime);
+	void BulletCheck();
 
 private:
 	bool CheckCollision(Object& object1, Object& object2);
