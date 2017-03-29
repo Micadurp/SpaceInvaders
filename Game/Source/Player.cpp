@@ -7,7 +7,7 @@ Player::Player() : shooting(false) , movespeed(200) , Object()
 
 Player::~Player()
 {
-	Shutdown();
+	Player::Shutdown();
 }
 
 bool Player::Initialize(float pPositionX, float pPositionY, int team)
@@ -18,6 +18,15 @@ bool Player::Initialize(float pPositionX, float pPositionY, int team)
 	model.setFillColor(sf::Color::Green);
 	model.setPosition(pPositionX, pPositionY);
 	
+	return true;
+}
+
+bool Player::Shutdown()
+{
+	Object::Shutdown();
+	shooting = false;
+	movespeed = 200;
+	model = sf::CircleShape(10.f);
 	return true;
 }
 

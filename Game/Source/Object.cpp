@@ -14,6 +14,10 @@ Object::~Object()
 
 bool Object::Shutdown()
 {
+	positionX = 0;
+	positionY = 0;
+	team = 0;
+	alive = false;
 	return true;
 }
 

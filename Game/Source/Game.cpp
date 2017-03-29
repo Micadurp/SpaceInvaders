@@ -22,18 +22,9 @@ bool Game::Destroy()
 {
 	player.Shutdown();
 
-	for each(Enemy enemy in enemies)
-	{
-		enemy.Shutdown();
-	}
-	for each(Wall wall in walls)
-	{
-		wall.Shutdown();
-	}
-	for each(Bullet bullet in bullets)
-	{
-		bullet.Shutdown();
-	}
+	enemies.clear();
+	walls.clear();
+	bullets.clear();
 
 	return true;
 }
