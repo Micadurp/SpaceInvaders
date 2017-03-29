@@ -31,6 +31,7 @@ public:
 	bool Initialize(Score * score);
 	bool Destroy();
 	int RenderGame(sf::RenderWindow * window, const sf::Time &frameTime);
+	void Draw(sf::RenderWindow * window);
 	bool PlaceWall(int startPosX, int startPosY);
 	bool CreatePlayer(int startPosX, int startPosY);
 	bool CreateEnemy(int startPosX, int startPosY);
