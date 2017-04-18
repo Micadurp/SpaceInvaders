@@ -9,13 +9,14 @@
 #include"Wall.hpp"
 #include"Score.hpp"
 #include<vector>
+#include<array>
 
 class Game
 {
 private:
 	Player player;
 	std::vector<Enemy> enemies;
-	std::vector<Bullet> bullets;
+	std::array<Bullet, 200> bullets;
 	std::vector<Wall> walls;
 	bool enemyDirection;
 	bool enemyDescent;
@@ -37,6 +38,9 @@ public:
 	bool CreateEnemy(int startPosX, int startPosY);
 	void InputCheck(const float &frameTime);
 	void BulletCheck();
+	size_t GetTotalEnemies();
+	size_t GetTotalWalls();
+	size_t GetTotalBullets();
 
 private:
 	bool CheckCollision(Object& object1, Object& object2);

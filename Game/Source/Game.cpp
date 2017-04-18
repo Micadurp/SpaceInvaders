@@ -11,6 +11,7 @@ Game::~Game()
 
 bool Game::Initialize(Score * score)
 {
+	bullets.fill(Bullet());
 	scoreHandler = score;
 	enemyDirection = true;
 	finished = false;
@@ -24,7 +25,6 @@ bool Game::Destroy()
 
 	enemies.clear();
 	walls.clear();
-	bullets.clear();
 
 	return true;
 }
@@ -234,8 +234,14 @@ void Game::aiMove(const sf::Time &frameTime)
 
 void Game::playerFire()
 {
-	bullets.emplace_back();
-	bullets.back().Initialize(player.GetPosX() + 9, player.GetPosY(), 1);
+	for (auto& bullet : bullets)
+	{
+		if (bullet.IsAlive() != true)
+		{
+			bullet.Initialize(player.GetPosX() + 9, player.GetPosY(), 1);
+			break;
+		}
+	}
 	player.SetShooting(true);
 }
 
@@ -250,8 +256,14 @@ void Game::enemyFire()
 			enemyShoot = rand() % 10000;
 			if (enemyShoot == 1)
 			{
-				bullets.emplace_back();
-				bullets.back().Initialize(enemies.at(i).GetPosX(), enemies.at(i).GetPosY(), 2);
+				for (auto& bullet : bullets)
+				{
+					if (bullet.IsAlive() != true)
+					{
+						bullet.Initialize(enemies.at(i).GetPosX(), enemies.at(i).GetPosY(), 2);
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -305,4 +317,19 @@ void Game::FinishGameCheck(sf::RenderWindow * window, const sf::Time &frameTime)
 		victory = true;
 		finished = true;
 	}
+}
+
+size_t Game::GetTotalEnemies()
+{
+	return enemies.size();
+}
+
+size_t Game::GetTotalWalls()
+{
+	return walls.size();
+}
+
+size_t Game::GetTotalBullets()
+{
+	return bullets.size();
 }

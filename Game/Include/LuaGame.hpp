@@ -11,6 +11,9 @@ namespace LuaGame
 	int CreatePlayer(lua_State* lua);
 	int CreateEnemy(lua_State* lua);
 	int InputCheck(lua_State* lua);
+	int GetTotalEnemies(lua_State* lua);
+	int GetTotalWalls(lua_State* lua);
+	int GetTotalBullets(lua_State* lua);
 }
 
 #endif

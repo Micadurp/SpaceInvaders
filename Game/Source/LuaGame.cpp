@@ -14,6 +14,9 @@ namespace LuaGame
 			{ "CreatePlayer", CreatePlayer },
 			{ "CreateEnemy", CreateEnemy },
 			{ "InputCheck", InputCheck },
+			{ "GetTotalEnemies", GetTotalEnemies },
+			{ "GetTotalWalls", GetTotalWalls },
+			{ "GetTotalBullets", GetTotalBullets },
 			{ NULL, NULL }
 		};
 
@@ -54,4 +57,23 @@ namespace LuaGame
 		g_game->InputCheck(dt);
 		return 0;
 	}
+
+	int GetTotalEnemies(lua_State* lua)
+	{
+		lua_pushnumber(lua, g_game->GetTotalEnemies());
+		return 1;
+	}
+
+	int GetTotalWalls(lua_State* lua)
+	{
+		lua_pushnumber(lua, g_game->GetTotalWalls());
+		return 1;
+	}
+
+	int GetTotalBullets(lua_State* lua)
+	{
+		lua_pushnumber(lua, g_game->GetTotalBullets());
+		return 1;
+	}
+
 }
